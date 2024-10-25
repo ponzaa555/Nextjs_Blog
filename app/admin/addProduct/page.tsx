@@ -2,12 +2,11 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { assets } from '@/Assets/assets'
-import { on } from 'events';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const Page = () => {
-  const [img, setImg] = useState(false)
+  const [img, setImg] = useState<Blob | boolean>()
   const [data, setData] = useState({
     title: "",
     description: "",
@@ -16,7 +15,7 @@ const Page = () => {
     authorImg: "/profile_icon.png",
   })
 
-  const onChangeHandler = (event: any) => {
+  const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const name = event.target.name;
     const value = event.target.value;
     setData(data => ({ ...data, [name]: value }));
@@ -31,7 +30,7 @@ const Page = () => {
       category: data.category,
       author: "John Doe",
       authorImg: "authorImage.jpg",
-      images: img.name, // Assuming `img` is defined elsewhere
+      images: data.authorImg, // Assuming `img` is defined elsewhere
     };
 
     console.log("data", data);
@@ -43,7 +42,7 @@ const Page = () => {
       setImg(false)
       setData({
         title: "",
-        description: "", 
+        description: "",
         category: "Startup",
         author: "Alex",
         authorImg: "/profile_icon.png",
@@ -57,9 +56,14 @@ const Page = () => {
       <form onSubmit={onSubmitHandler} className=' pt-5 px-5 sm:pt-12 sm:pl-16'>
         <p className=' text-xl'>Upload thumbnail</p>
         <label htmlFor='image'>
-          <Image className=' mt-4' src={!img ? assets.upload_area : URL.createObjectURL(img)} width={140} height={70} alt='' />
+          <Image className=' mt-4' src={!img || typeof img === "boolean" ? assets.upload_area
+            : URL.createObjectURL(img as Blob)} width={140} height={70} alt='' />
         </label>
-        <input onChange={(e) => setImg(e.target.files[0])} type='file' id='image' hidden required />
+        <input onChange={(e) => {
+          if (e.target.files && e.target.files.length > 0) {
+            setImg(e.target.files[0]);
+          }
+        }} type='file' id='image' hidden required />
         <p className='text-xl mt-4'>Blog title</p>
         <input name='title' onChange={onChangeHandler} value={data.title} className='w-full sm:w-[500px] mt-4 px-4 py-3 border' type='text' placeholder='Type here ' required />
         <p className='text-xl mt-4'>Blog DESC</p>

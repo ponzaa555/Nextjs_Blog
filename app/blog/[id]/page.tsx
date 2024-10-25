@@ -53,7 +53,7 @@ const BlogPage = ({ params }: { params: { id: string } }) => {
                         <Image src={assets.logo} width={180} alt=" " className="w-[130px] " />
                     </Link>
                     <button className=" flex items-center gap-2 font-medium py-1 px-3  sm:py-3 sm:px-6  border border-black shadow-[-7px_7px_0px_#000000]">
-                        Get started <Image src={assets.arrow} />
+                        Get started <Image src={assets.arrow} alt="" />
                     </button>
                 </div>
                 <div className=" text-center my-24 ">
@@ -63,10 +63,10 @@ const BlogPage = ({ params }: { params: { id: string } }) => {
                 </div>
             </div>
             <div className=" mx-5 max-w-[800px] md:mx-auto mt-[-100px] mb-10 ">
-                <Image className="  border-4 border-white" src={data?.images} width={1280} height={720} alt="" layout="fixed" />
+                <Image className="  border-4 border-white" src={data!.images} width={1280} height={720} alt="" layout="fixed" />
                 <h1 className="my-8 text-[26px] font-semibold">Introduction:</h1>
 
-                <div className="blog-content" dangerouslySetInnerHTML={{__html:data?.description}}></div>
+                <div className="blog-content" dangerouslySetInnerHTML={{__html:data!.description}}></div>
                 <h3 className="my-5 text-[18px] font-semibold"> Step 1: Self-Reflection and Goal</h3>
                 <p className=" my-3 "> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, ad aliquid ullam voluptatibus et nihil quae saepe earum harum delectus.</p>
                 <p className=" my-3 "> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, ad aliquid ullam voluptatibus et nihil quae saepe earum harum delectus.</p>
@@ -85,9 +85,9 @@ const BlogPage = ({ params }: { params: { id: string } }) => {
                 <div className=" my-24 ">
                     <p className=" text-black font-semibold my-4">Share this article on social media</p>
                     <div className=" flex mt-4">
-                        <Image src={assets.facebook_icon} width={50} />
-                        <Image src={assets.twitter_icon} width={50} />
-                        <Image src={assets.googleplus_icon} width={50} />
+                        <Image src={assets.facebook_icon} width={50}  alt=""/>
+                        <Image src={assets.twitter_icon} width={50}  alt=""/>
+                        <Image src={assets.googleplus_icon} width={50}  alt=""/>
                     </div>
                 </div>
             </div>

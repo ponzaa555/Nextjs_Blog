@@ -10,7 +10,7 @@ interface BlogProps {
 
 const Blog: React.FC<BlogProps> = ({ id, category, title, description }) => {
     return (
-        <div className=" border w-[300px]   border-black border-b-2 hover:shadow-[-5px_5px_0px_#000000]" key={id} >
+        <div className=" border w-[300px] border-black border-b-2 hover:shadow-[-5px_5px_0px_#000000]" key={id} >
             {/* Images */}
             <div>
                 <Image src="/image.png" width={300} height={100} alt="" />
