@@ -1,7 +1,7 @@
 import React from 'react';
 import { format } from 'date-fns';
 
-const Subtable = ({email ,id ,date,deletemail}:{email:string ,id:string,date:Date,deletemail:React.FunctionComponent}) => {
+const Subtable = ({email ,id ,date,deletemail}:{email:string ,id:string,date:Date,deletemail:((mongoId: string) => Promise<void>)}) => {
     return (
         <tr className=' bg-white border-b text-left'>
             <th scope='row' className=' px-6 py-4 font-medium text-gray-900 whitespace-nowrap'>

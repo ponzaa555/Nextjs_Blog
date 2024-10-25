@@ -3,13 +3,14 @@ import axios from 'axios';
 import { set } from 'mongoose';
 import { it } from 'node:test';
 import React, { useEffect, useState } from 'react';
-import Blog from './Blog';
+import Blogs from './Blog';
 import Link from 'next/link';
+import { Blog} from '@prisma/client';
 
 
 const BlogList = () => {
     const [menu, setMenu] = useState("All");
-    const [blog, setBlog] = useState([])
+    const [blog, setBlog] = useState<Array<Blog>>([])
 
     const fetchBlog = async () => {
         try {
@@ -42,8 +43,8 @@ const BlogList = () => {
                          menu === 'All' ? true : item.category === menu
                     ).map((item, index) => {
                         return (
-                            <Link href={`/blog/${item.id}`}>
-                                <Blog
+                            <Link href={`/blog/${item.id}`} key={index}>
+                                <Blogs
                                 key={index}
                                 id={item.id}
                                 category={item.category}

@@ -1,3 +1,4 @@
+import { assets } from "@/Assets/assets";
 import Image from "next/image";
 
 interface BlogProps {
@@ -8,7 +9,7 @@ interface BlogProps {
     description: string;
 }
 
-const Blog: React.FC<BlogProps> = ({ id, category, title, description }) => {
+const Blog = ({ id, category, title, description }:{id:string,category:string, title:string, description : string}) => {
     return (
         <div className=" border w-[300px] border-black border-b-2 hover:shadow-[-5px_5px_0px_#000000]" key={id} >
             {/* Images */}
@@ -25,8 +26,9 @@ const Blog: React.FC<BlogProps> = ({ id, category, title, description }) => {
                     <p className="text-sm tracking-tight text-gray-700" dangerouslySetInnerHTML={{__html:description.slice(0,120)}}>
                     </p>
                 </div>
-                <div className=" mt-5 mb-2 font-bold hover:cursor-pointer">
-                    <h1>Read more -></h1>
+                <div className=" flex justify-between mt-5 mb-2 font-bold hover:cursor-pointer ">
+                    <h1>Read more  </h1>
+                    <Image src={ assets.arrow} alt="" />
                 </div>
             </div>
         </div>
